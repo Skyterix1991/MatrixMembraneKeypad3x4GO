@@ -1,5 +1,6 @@
 # MatrixMembraneKeypad3x4GO
 GoLang Matrix Membrane Keypad 3x4 implementation using warthog618/gpiod library.
+Tested with RaspberryPi 4B 4GB.
 
 Pin 1	-> GPIO 7 (Pin 26)
 
