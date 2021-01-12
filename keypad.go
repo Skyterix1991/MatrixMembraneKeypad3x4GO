@@ -33,13 +33,12 @@ func main() {
 	}
 
 	// Assign all row pins
-	for i := 0; i <= len(rowOffsets) - 1; i++ {
+	for i := 0; i <= len(rowOffsets)-1; i++ {
 		assignRow(rowOffsets[i])
 	}
 
-
 	// Assign all col pins
-	for i := 0; i <= len(colOffsets) - 1; i++ {
+	for i := 0; i <= len(colOffsets)-1; i++ {
 		assignCol(colOffsets[i])
 	}
 
@@ -85,17 +84,21 @@ func assignCol(offset int) {
 }
 
 func closeLines() {
-	for i := 0; i <= len(rowPins) - 1; i++ {
+	for i := 0; i <= len(rowPins)-1; i++ {
+		fmt.Println("[LOG] Released row pin", i)
+
 		rowPins[i].Close()
 	}
 
-	for i := 0; i >= len(colPins) - 1; i++ {
-		rowPins[i].Close()
+	for i := 0; i <= len(colPins)-1; i++ {
+		fmt.Println("[LOG] Released col pin", i)
+
+		colPins[i].Close()
 	}
 }
 
 func indexOf(value int, array []int) int {
-	for i := 0; i <= len(array) - 1; i++ {
+	for i := 0; i <= len(array)-1; i++ {
 		if array[i] == value {
 			return i
 		}
@@ -113,7 +116,7 @@ func inputLoop() {
 		var rowLine *gpiod.Line
 
 		// Attempt to find a pressed row
-		for i := 0; i <= len(rowPins) - 1; i++ {
+		for i := 0; i <= len(rowPins)-1; i++ {
 			// Get row value
 			value, _ := rowPins[i].Value()
 
@@ -135,7 +138,7 @@ func inputLoop() {
 		selectedColIndex := -1
 
 		// Check for pressed column
-		for i := 0; i <= len(colPins) - 1; i++ {
+		for i := 0; i <= len(colPins)-1; i++ {
 			// Temporarily set col output to 0 to test if that's the one
 			colPins[i].SetValue(0)
 
